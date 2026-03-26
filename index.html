@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL RAYO - Servicio Automotriz y Venta de Vehículos</title>
+    <meta name="description" content="EL RAYO ofrece servicios de mecánica automotriz, reparación de motocicletas, venta de vehículos y motos. ¡Agenda tu cita hoy!">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="/index.html" style="display: flex; align-items: center;">
+                    <img src="/logo.jpg" alt="EL RAYO Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h1 style="display: none;">EL <span>RAYO</span></h1>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menú" id="mobile-menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="/catalogo.html">Catálogo</a></li>
+                    <li><a href="/servicios.html">Servicios</a></li>
+                    <li><a href="/citas.html">Citas</a></li>
+                    <li><a href="/nosotros.html">Nosotros</a></li>
+                    <li><a href="/contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="stagger-item">POTENCIA Y <span style="color: var(--color-accent);">PRECISIÓN</span></h2>
+                    <p class="stagger-item" style="font-size: 1.5rem; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 3rem;">Líderes en mecánica de alta gama y selección de vehículos premium.</p>
+                    <div class="hero-buttons stagger-item">
+                        <a href="/catalogo.html" class="btn btn-primary">Ver Catálogo</a>
+                        <a href="/citas.html" class="btn btn-secondary">Agendar Servicio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SUMMARY -->
+        <section class="section reveal">
+            <div class="container">
+                <h2 class="section-title">INGENIERÍA <span style="color: var(--color-accent);">SUPERIOR</span></h2>
+                <p class="section-subtitle">Soluciones profesionales diseñadas para elevar el rendimiento de su vehículo.</p>
+                <div class="grid services-grid">
+                    <div class="service-card stagger-item">
+                        <div class="service-icon">🔧</div>
+                        <h3>Mecánica Especializada</h3>
+                        <p>Mantenimiento preventivo y correctivo con los más altos estándares de calidad.</p>
+                        <a href="/servicios.html" class="btn btn-secondary">Explorar</a>
+                    </div>
+                    <div class="service-card stagger-item">
+                        <div class="service-icon">💻</div>
+                        <h3>Diagnóstico Digital</h3>
+                        <p>Detección avanzada de fallas electrónicas mediante escaneo computarizado.</p>
+                        <a href="/servicios.html" class="btn btn-secondary">Explorar</a>
+                    </div>
+                    <div class="service-card stagger-item">
+                        <div class="service-icon">🏍️</div>
+                        <h3>Motos de Alta Cilindrada</h3>
+                        <p>Expertos en el cuidado y optimización de motocicletas deportivas.</p>
+                        <a href="/servicios.html" class="btn btn-secondary">Explorar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED CATALOG -->
+        <section class="section bg-dark reveal">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;">
+                    <div style="text-align: left;">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 0;">SELECCIÓN <span style="color: var(--color-accent);">PREMIUM</span></h2>
+                        <p style="color: var(--color-text-muted); font-size: 1.2rem;">Descubra nuestra flota exclusiva de vehículos disponibles.</p>
+                    </div>
+                    <a href="/catalogo.html" class="btn btn-primary">Ver Todo</a>
+                </div>
+                <div class="catalog-grid" id="featured-catalog">
+                    <!-- Dinámicamente poblado con showroom style cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section id="nosotros-home" class="section reveal">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                    <div class="stagger-item">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000" alt="Sobre Nosotros" style="border-radius: var(--border-radius); box-shadow: var(--shadow-lg); width: 100%; height: auto; object-fit: cover;">
+                    </div>
+                    <div class="stagger-item">
+                        <h2 class="section-title" style="text-align: left;">NUESTRA <span style="color: var(--color-accent);">HISTORIA</span></h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text-muted); margin-bottom: 2rem;">
+                            Desde hace más de 15 años, <strong>EL RAYO</strong> se ha consolidado como el centro de confianza para dueños de vehículos premium. Nuestra pasión por la ingeniería y el detalle nos define.
+                        </p>
+                        <a href="/nosotros.html" class="btn btn-secondary">Leer nuestra historia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contacto-home" class="section bg-dark reveal">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 5rem;">
+                    <h2 class="section-title">¿NECESITA <span style="color: var(--color-accent);">AYUDA?</span></h2>
+                    <p class="section-subtitle">Nuestro equipo de expertos está listo para asesorarle en su próxima compra o servicio.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info stagger-item">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--color-accent); font-size: 0.9rem; margin-bottom: 1rem;">UBICACIÓN</h3>
+                            <p style="color: #fff; font-size: 1.2rem;">Calle Falsa 123, Ciudad de México</p>
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--color-accent); font-size: 0.9rem; margin-bottom: 1rem;">TELÉFONO</h3>
+                            <p style="color: #fff; font-size: 1.5rem; font-weight: 700;">+52 56 5218 9129</p>
+                        </div>
+                        <a href="/contacto.html" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ir a Contacto Completo</a>
+                    </div>
+                    <div class="form-wrapper stagger-item" style="padding: 3rem;">
+                        <h3 style="margin-bottom: 2rem; font-size: 1.2rem;">MENSAJE RÁPIDO</h3>
+                        <form id="contact-home-form" class="custom-form">
+                            <div class="form-group">
+                                <input type="text" id="h-name" placeholder="Su Nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="h-email" placeholder="Su Correo" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>EL <span style="color: var(--color-accent);">RAYO</span></h2>
+                    <p>Líderes en servicio automotriz y venta de vehículos premium. Tu confianza es nuestro motor.</p>
+                    <div class="social-links" style="display: flex; gap: 1rem;">
+                        <!-- Socials will be here -->
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="/index.html">Inicio</a></li>
+                        <li><a href="/catalogo.html">Catálogo</a></li>
+                        <li><a href="/servicios.html">Servicios</a></li>
+                        <li><a href="/citas.html">Agendar Cita</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="/nosotros.html">Quiénes Somos</a></li>
+                        <li><a href="/contacto.html">Contacto</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horario</h4>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Lun - Vie: 9:00 - 18:00</p>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Sáb: 9:00 - 14:00</p>
+                    <p style="color: var(--color-text-muted);">Dom: Cerrado</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EL RAYO. Todos los derechos reservados.</p>
+                <p>Diseño por Antigravity</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
