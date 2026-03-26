@@ -58,7 +58,7 @@ app.post("/api/contacto", async (req, res) => {
     try {
         // En producción el usuario debe configurar credenciales para que esto funcione
         // Por ahora, simulamos el envío exitoso si no hay credenciales
-        if (transporter.transporter.options.auth.user === 'SU_CORREO@gmail.com') {
+        if (transporter.options.auth.user === 'SU_CORREO@gmail.com') {
             console.log("SIMULACIÓN: Correo enviado a " + email);
             return res.json({ ok: true, message: "Simulación de correo exitosa" });
         }
@@ -116,7 +116,7 @@ app.post("/api/citas", async (req, res) => {
 
     try {
         // Simulación si no hay credenciales
-        if (transporter.transporter.options.auth.user === 'SU_CORREO@gmail.com') {
+        if (transporter.options.auth.user === 'SU_CORREO@gmail.com') {
             console.log("SIMULACIÓN: Cita enviada a " + email);
             return res.json({ ok: true, message: "Simulación de cita exitosa" });
         }
