@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Vehículo - EL RAYO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="/index.html" style="display: flex; align-items: center;">
+                    <img src="/logo.jpg" alt="EL RAYO Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h1 style="display: none;">EL <span>RAYO</span></h1>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menú" id="mobile-menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="/catalogo.html">Catálogo</a></li>
+                    <li><a href="/servicios.html">Servicios</a></li>
+                    <li><a href="/citas.html">Citas</a></li>
+                    <li><a href="/nosotros.html">Nosotros</a></li>
+                    <li><a href="/contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section reveal" style="padding-top: 200px; min-height: 80vh;">
+            <div class="container">
+                <div class="back-btn-container" style="margin-bottom: 4rem;">
+                    <a href="/catalogo.html" class="back-btn" style="display: inline-flex; align-items: center; gap: 1rem; color: var(--color-accent); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: var(--transition);">
+                        <span style="font-size: 1.5rem;">&larr;</span> VOLVER AL CATALOGO
+                    </a>
+                </div>
+                
+                <div id="detalle-container" class="stagger-item">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>EL <span style="color: var(--color-accent);">RAYO</span></h2>
+                    <p>Líderes en servicio automotriz y venta de vehículos premium. Tu confianza es nuestro motor.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="/index.html">Inicio</a></li>
+                        <li><a href="/catalogo.html">Catálogo</a></li>
+                        <li><a href="/servicios.html">Servicios</a></li>
+                        <li><a href="/citas.html">Citas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="/nosotros.html">Nosotros</a></li>
+                        <li><a href="/contacto.html">Contacto</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horario</h4>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Lun - Vie: 9:00 - 18:00</p>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Sáb: 9:00 - 14:00</p>
+                    <p style="color: var(--color-text-muted);">Dom: Cerrado</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EL RAYO. Todos los derechos reservados.</p>
+                <p>Diseño por Antigravity</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Intersection Observer
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
