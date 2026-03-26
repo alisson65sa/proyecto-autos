@@ -1,5 +1,7 @@
 import './style.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 // Datos de vehículos reales
 const catalogData = [
     {
@@ -302,7 +304,7 @@ function handleAppointments() {
             localStorage.setItem('citas_el_rayo', JSON.stringify(citasExistentes));
 
             // Llamada al backend
-            const response = await fetch('http://localhost:4000/api/citas', {
+            const response = await fetch(`${API_URL}/api/citas`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -380,7 +382,7 @@ document.addEventListener('submit', async (e) => {
 
         try {
             // Llamada al backend
-            const response = await fetch('http://localhost:4000/api/contacto', {
+            const response = await fetch(`${API_URL}/api/contacto`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
