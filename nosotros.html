@@ -82,10 +82,28 @@
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
             });
-        });
+        }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Scroll listener para navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            }
+        });
+        // Menú móvil
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenuEl = document.getElementById('nav-menu');
+        if (menuBtn && navMenuEl) {
+            menuBtn.addEventListener('click', () => navMenuEl.classList.toggle('active'));
+        }
     </script>
 
     <script type="module" src="src/main.js"></script>
