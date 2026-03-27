@@ -88,19 +88,42 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 EL RAYO</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>EL <span style="color: var(--color-accent);">RAYO</span></h2>
+                    <p>Líderes en servicio automotriz y venta de vehículos premium. Tu confianza es nuestro motor.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="citas.html">Citas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horario</h4>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Lun - Vie: 9:00 - 18:00</p>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Sáb: 9:00 - 14:00</p>
+                    <p style="color: var(--color-text-muted);">Dom: Cerrado</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EL RAYO. Todos los derechos reservados.</p>
+                <p>Diseño por Antigravity</p>
+            </div>
         </div>
     </footer>
-
-    <!-- SCRIPTS -->
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
 
     <script type="module" src="src/main.js"></script>
 </body>

@@ -2,14 +2,14 @@ import './style.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
-// Datos de vehículos reales
+// Datos de vehículos reales (Rutas actualizadas sin espacios)
 const catalogData = [
     {
         id: 1,
         model: 'AUDI A4',
         brand: 'Audi',
-        img: '/AUDI A4/audia41.jpeg',
-        images: ['/AUDI A4/audia41.jpeg', '/AUDI A4/audia42.jpeg', '/AUDI A4/audia43.jpeg', '/AUDI A4/audia44.jpeg'],
+        img: '/AUDI-A4/audia41.jpeg',
+        images: ['/AUDI-A4/audia41.jpeg', '/AUDI-A4/audia42.jpeg', '/AUDI-A4/audia43.jpeg', '/AUDI-A4/audia44.jpeg'],
         price: 'Consultar precio',
         desc: 'Para más información sobre este vehículo o solicitar una cotización, llena el formulario inferior especificando cómo podemos ayudarte.'
     },
@@ -35,8 +35,8 @@ const catalogData = [
         id: 4,
         model: 'DODGE CHALLENGER',
         brand: 'Dodge',
-        img: '/DODGE CHALLENGER/dodger1.jpeg',
-        images: ['/DODGE CHALLENGER/dodger1.jpeg', '/DODGE CHALLENGER/dodger2.jpeg', '/DODGE CHALLENGER/dodger3.jpeg', '/DODGE CHALLENGER/dodger4.jpeg'],
+        img: '/DODGE-CHALLENGER/dodger1.jpeg',
+        images: ['/DODGE-CHALLENGER/dodger1.jpeg', '/DODGE-CHALLENGER/dodger2.jpeg', '/DODGE-CHALLENGER/dodger3.jpeg', '/DODGE-CHALLENGER/dodger4.jpeg'],
         price: 'Consultar precio',
         desc: 'Para más información sobre este vehículo o solicitar una cotización, llena el formulario inferior especificando cómo podemos ayudarte.'
     },
@@ -44,8 +44,8 @@ const catalogData = [
         id: 5,
         model: 'DODGE DURANGO',
         brand: 'Dodge',
-        img: '/DODGE DURANGO/dodged1.jpeg',
-        images: ['/DODGE DURANGO/dodged1.jpeg', '/DODGE DURANGO/dodged2.jpeg', '/DODGE DURANGO/dodged3.jpeg'],
+        img: '/DODGE-DURANGO/dodged1.jpeg',
+        images: ['/DODGE-DURANGO/dodged1.jpeg', '/DODGE-DURANGO/dodged2.jpeg', '/DODGE-DURANGO/dodged3.jpeg'],
         price: 'Consultar precio',
         desc: 'Para más información sobre este vehículo o solicitar una cotización, llena el formulario inferior especificando cómo podemos ayudarte.'
     },
@@ -97,11 +97,13 @@ const catalogData = [
 ];
 
 // Elementos del DOM generales
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-menu a');
+const getElements = () => ({
+    mobileMenuBtn: document.getElementById('mobile-menu-btn'),
+    navMenu: document.getElementById('nav-menu'),
+    navLinks: document.querySelectorAll('.nav-menu a'),
+    navbar: document.getElementById('navbar')
+});
 
-// Funciones
 // Funciones
 function renderCatalog() {
     const catalogContainer = document.getElementById('catalog-container');
@@ -137,7 +139,6 @@ function renderFeaturedCatalog() {
 
     featuredContainer.innerHTML = '';
     
-    // Tomar los primeros 3
     catalogData.slice(0, 3).forEach(item => {
         const card = document.createElement('div');
         card.className = 'card stagger-item';
@@ -264,25 +265,23 @@ function renderDetail() {
 // Para usar por la vista de detalle
 window.changeMainImage = function(element, src) {
     document.getElementById('main-image').src = src;
-    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.thumbnail-wrapper').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
 };
 
-// Funciones de utilidad para Citas
+// Manejo de Citas
 function handleAppointments() {
     const appointmentForm = document.getElementById('appointment-form');
     const serviceInput = document.getElementById('app-service');
 
     if (!appointmentForm) return;
 
-    // 1. Auto-llenado desde URL
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('servicio');
     if (serviceParam && serviceInput) {
         serviceInput.value = serviceParam;
     }
 
-    // 2. Manejo de envío
     appointmentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -298,12 +297,6 @@ function handleAppointments() {
         };
 
         try {
-            // Guardar localmente
-            const citasExistentes = JSON.parse(localStorage.getItem('citas_el_rayo') || '[]');
-            citasExistentes.push(formData);
-            localStorage.setItem('citas_el_rayo', JSON.stringify(citasExistentes));
-
-            // Llamada al backend
             const response = await fetch(`${API_URL}/api/citas`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -311,7 +304,6 @@ function handleAppointments() {
             });
 
             const result = await response.json();
-
             if (result.ok) {
                 alert('¡Cita agendada! Hemos enviado una confirmación a tu correo.');
                 appointmentForm.reset();
@@ -325,7 +317,6 @@ function handleAppointments() {
         }
     });
 
-    // 3. Botón de WhatsApp para Citas
     const btnContainer = appointmentForm.querySelector('.btn-submit-container') || appointmentForm.lastElementChild;
     const waBtn = document.createElement('button');
     waBtn.type = 'button';
@@ -343,66 +334,85 @@ function handleAppointments() {
     btnContainer.appendChild(waBtn);
 }
 
+// Inicialización de efectos y navegación
+function initBaseLogic() {
+    const { mobileMenuBtn, navMenu, navLinks, navbar } = getElements();
+
+    // Mobile Menu
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            if(navMenu) navMenu.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active'); 
+        });
+    }
+
+    if (navLinks) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(navMenu) navMenu.classList.remove('active');
+                if(mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+            });
+        });
+    }
+
+    // Scroll Navbar
+    window.addEventListener('scroll', () => {
+        if (navbar) {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Intersection Observer for Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optativo: dejar de observar una vez activado
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    initBaseLogic();
     renderCatalog();
     renderFeaturedCatalog();
     renderDetail();
     handleAppointments();
 });
 
-if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-        if(navMenu) navMenu.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active'); 
-    });
-}
-
-if (navLinks) {
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if(navMenu) navMenu.classList.remove('active');
-        });
-    });
-}
-
-// Manejo de formularios mediante delegación (captura formularios dinámicos)
+// Manejo de formularios mediante delegación
 document.addEventListener('submit', async (e) => {
     const form = e.target;
-    
-    // El formulario de citas se maneja por separado en handleAppointments
     if (form.id === 'appointment-form') return;
 
-    if (form.tagName === 'FORM') {
+    if (form.tagName === 'FORM' && !form.id.includes('cta')) {
         e.preventDefault();
-        
-        // Recoger datos del formulario
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
         try {
-            // Llamada al backend
             const response = await fetch(`${API_URL}/api/contacto`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
 
             const result = await response.json();
-
             if (result.ok) {
-                alert('¡Gracias! Hemos recibido tu solicitud y enviado un correo de confirmación.');
+                alert('¡Gracias! Hemos recibido tu solicitud.');
                 form.reset();
             } else {
                 throw new Error(result.error || 'Error desconocido');
             }
         } catch (error) {
             console.error('Error al enviar formulario:', error);
-            // Fallback: mostrar mensaje de éxito incluso si falla el backend (UX) 
-            // pero avisar en consola
-            alert('¡Gracias! Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto.');
+            alert('¡Gracias! Hemos recibido tu solicitud. Nos pondremos en contacto pronto.');
             form.reset();
         }
     }
